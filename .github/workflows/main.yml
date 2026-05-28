@@ -62,40 +62,6 @@ jobs:
       run: |
         git clone https://github.com/osm0sis/AnyKernel3.git AnyKernel3
 
-    - name: Configure AnyKernel3 for Sweet
-      run: |
-        rm -f AnyKernel3/anykernel.sh
-
-        cat << 'EOF' > AnyKernel3/anykernel.sh
-        ### AnyKernel3 Ramdisk Mod Script
-        ## osm0sis @ xda-developers
-
-        properties() { '
-        kernel.string=ViP3R Sweet Kernel
-        do.devicecheck=1
-        do.modules=0
-        do.systemless=1
-        do.cleanup=1
-        do.cleanuponabort=0
-        device.name1=sweet
-        device.name2=sweetin
-        supported.versions=
-        supported.patchlevels=
-        supported.vendorpatchlevels=
-        '; }
-
-        block=boot;
-        is_slot_device=auto;
-        ramdisk_compression=auto;
-        patch_vbmeta_flag=auto;
-
-        . tools/ak3-core.sh;
-
-        dump_boot;
-
-        write_boot;
-        EOF
-
     - name: Copy Kernel
       run: |
         cp out/arch/arm64/boot/Image.gz AnyKernel3/
