@@ -2,6 +2,9 @@ name: Build Sweet Kernel
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - NETHUNTER
 
 jobs:
   build:
